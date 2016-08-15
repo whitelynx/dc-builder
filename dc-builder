@@ -1,0 +1,31 @@
+#!/bin/bash
+
+function help() {
+	prog_name=$(basename "$0")
+	cat >/dev/stderr <<-EOF
+	Start a dc-builder container.
+
+	Usage:
+	  $prog_name                  (start interactive session)
+	  $prog_name BASH_ARG [...]   (pass the given arguments to \`bash\` in a new session)
+
+	The current working directory will be mounted at its absolute path in the container; this is to allow you to mount
+	volumes when running other Docker containers, and have it work correctly.
+
+	You may set the DOCKER_RUN_ARGS environment variable to pass additional arguments to the \`docker run\` command;
+	see \`docker help run\` for more information.
+	EOF
+	exit 1
+}
+
+case "$1" in
+	-h|-?|--help) help ;;
+esac
+
+
+declare -a ARGS=("$@")
+# If no arguments were given for `bash`, pass `-i`. (start interactive session)
+[[ $# -gt 0 ]] || ARGS=(-i)
+
+# Run the Docker container.
+exec docker run $DOCKER_RUN_ARGS -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD":"$PWD" -w "$PWD" -e TERM="$TERM" --rm -it dc-builder:latest "${ARGS[@]}"
