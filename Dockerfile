@@ -3,7 +3,7 @@ FROM alpine:3.4
 COPY .bashrc /root/
 
 RUN set -x \
-	&& apk add --no-cache bash curl git grep make docker binutils coreutils findutils python py-pip perl ncurses sudo \
+	&& apk add --no-cache bash make binutils coreutils findutils grep curl git perl python py-pip ncurses docker sudo \
 	&& pip install docker-compose
 
 ENTRYPOINT ["/bin/bash"]
