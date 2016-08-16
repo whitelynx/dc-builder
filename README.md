@@ -45,17 +45,17 @@ or Docker won't be able to find your source path. (basically, the paths inside t
 at all, from Docker's perspective)
 
 
-### Without using `dc-builder`:
+### Without using the `dc-builder` script:
 
 ```bash
-docker pull dc-builder:latest
+docker pull whitelynx/dc-builder:latest
 docker run -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD":"$PWD" -w "$PWD" -e TERM="$TERM" --rm -it dc-builder:latest -i
 ```
 
 You may replace the `-i` with any arguments you want passed to `bash`.
 
 
-### Using `dc-builder`:
+### Using the `dc-builder` script:
 
 ```bash
 git clone https://github.com/whitelynx/dc-builder.git
