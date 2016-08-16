@@ -22,6 +22,11 @@ PS1="\$(exit_code=\$?; [[ \$exit_code -eq 0 ]] || printf \"${_p_e_code} %s ${_p_
 color()(set -o pipefail;"$@" 2>&1>&3|sed 's/.*/'$_c_err'&'$_c_reset'/'>&2)3>&1
 export -f color # Make sure `color` is accessible by subprocesses, so the `make` alias continues to work.
 
+# Announce a command loudly, then run it.
+# Usage: announce COMMAND [ARG ...]
+announce() { echo -e "\x1b[1;38;5;232;48;5;143m\x1b[2K$*\x1b[m";"$@"; }
+export -f announce
+
 # Color output!
 alias make='color make'
 alias ls='ls --color=auto'
