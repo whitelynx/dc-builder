@@ -19,7 +19,7 @@ PS1="\$(exit_code=\$?; [[ \$exit_code -eq 0 ]] || printf \"${_p_e_code} %s ${_p_
 
 # Run a command, and color anything it writes to stderr red.
 # Usage: color COMMAND [ARG ...]
-color()(set -o pipefail;"$@" 2>&1>&3|sed 's/.*/'$_c_err'&'$_c_reset'/'>&2)3>&1
+color()(set -o pipefail;"$@" 2>&1>&3|sed -u 's/.*/'$_c_err'&'$_c_reset'/'>&2)3>&1
 export -f color # Make sure `color` is accessible by subprocesses, so the `make` alias continues to work.
 
 # Announce a command loudly, then run it.
