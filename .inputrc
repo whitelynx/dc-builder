@@ -1,0 +1,47 @@
+ # Don't make noise or flash at me!
+ set bell-style none
+
+ # Don't strip characters to 7 bits when reading.
+ set input-meta on
+
+ # Allow iso-latin1 characters to be inserted rather than converted to prefix-meta sequences.
+ set convert-meta off
+
+# If there are more than 150 possible completions for a word, ask the user if he wants to see all of them.
+set completion-query-items 150
+
+
+#### Key Bindings ####
+
+# Page Up: search backward through history
+"\e[5~": history-search-backward
+
+# Page Down: search forward through history
+"\e[6~": history-search-forward
+
+
+# Home: move to the beginning of the line (and alternate when inside... tmux, maybe?)
+"\e[1~": beginning-of-line
+"\e[7~": beginning-of-line
+
+# End: move to the end of the line
+"\e[4~": end-of-line
+
+# Ctrl+Left: move 1 word to the left (and alternate when inside tmux)
+"\eOd": backward-word
+"\e[1;5D": backward-word
+
+# Ctrl+Right: move 1 word to the right (and alternate when inside tmux)
+"\eOc": forward-word
+"\e[1;5C": forward-word
+
+
+# Delete: delete the next character to the right
+"\e[3~": delete-char
+
+# Ctrl+Backspace: delete 1 word to the left
+"\C-h": backward-kill-word
+
+# Ctrl+Delete: delete 1 word to the right (and alternate when inside tmux)
+"\e[3^": kill-word
+"\e[3;5~": kill-word

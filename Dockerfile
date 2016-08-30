@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-COPY .bashrc /root/
+COPY .bashrc .inputrc /root/
 
 RUN set -x \
 	&& apk add --no-cache build-base bash coreutils findutils grep curl git sed perl python3 docker sudo \
